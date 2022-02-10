@@ -13,9 +13,18 @@
  * returns: heads
  * 
  */
-
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 function coinFlip() {
-
+  let x = getRandomIntInclusive(0,1);
+  if (x == 0) {
+    return "heads";
+  } else {
+    return "tails";
+  }
 }
 
 /** Multiple coin flips
@@ -38,7 +47,11 @@ function coinFlip() {
  */
 
 function coinFlips(flips) {
-
+  const resultsArray = [flips]; //does this create an array of length flips?
+  for(let i = 0; i < flips; i++) {
+    resultsArray.push(coinFlip());
+  }
+  return resultsArray;
 }
 
 /** Count multiple flips
@@ -55,7 +68,16 @@ function coinFlips(flips) {
  */
 
 function countFlips(array) {
-
+  let heads = 0;
+  let tails = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i]=="heads") {
+      heads++;
+    } else {
+      tails++;
+    }
+  }
+  return "heads: " + heads + ", tails: " + tails + " ";
 }
 
 /** Flip a coin!
@@ -70,7 +92,12 @@ function countFlips(array) {
  */
 
 function flipACoin(call) {
-
+  flip = coinFlip();
+  if (call==flip) {
+    return "call: '" + call + "', " + "flip: '" + flip + "', " + "result: 'win'";
+  } else {
+    return "call: '" + call + "', " + "flip: '" + flip + "', " + "result: 'lose'";
+  }
 }
 
 
@@ -78,3 +105,5 @@ function flipACoin(call) {
  * 
  * Export all of your named functions
 */
+
+export {getRandomIntInclusive, coinFlip, coinFlips, countFlips, flipACoin};
