@@ -47,7 +47,7 @@ function coinFlip() {
  */
 
 function coinFlips(flips) {
-  const resultsArray = [flips]; //does this create an array of length flips?
+  const resultsArray = [];
   for(let i = 0; i < flips; i++) {
     resultsArray.push(coinFlip());
   }

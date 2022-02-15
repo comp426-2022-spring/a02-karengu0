@@ -1,9 +1,9 @@
 import { coinFlip, coinFlips } from "./modules/coin.mjs";
-// const minimist = require('minimist')
 var argument = process.argv.slice(2);
-//console.log(argument);
-if (!argument) {
-    console.log(coinFlip());
+
+//how to extract just the number?
+if (argument.number > 0) {
+    console.log(coinFlips(argument.number));
 } else {
-    console.log(coinFlips(argument));
+    console.log(coinFlip());
 }
