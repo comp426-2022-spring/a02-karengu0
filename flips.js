@@ -1,16 +1,13 @@
 import { coinFlip, coinFlips, countFlips } from "./modules/coin.mjs";
+import minimist from "minimist";
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+// import { createRequire } from 'module';
+//const require = createRequire(import.meta.url);
 
-const minimist = require('minimist')
 var argument = minimist(process.argv.slice(2));
+const num = argument.num || 1;
 
-//how to extract just the number?
-if (argument.number > 0) {
-    var array = coinFlips(argument.number);
-    console.log(array);
-    console.log(countFlips(array));
-} else {
-    console.log(coinFlip());
-}
+let numOfFlips = coinFlips(num)
+
+console.log(flips);
+console.log(countFlips(flips));
