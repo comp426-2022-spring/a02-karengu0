@@ -109,4 +109,4 @@ export function flipACoin(call) {
  * Export all of your named functions
 */
 
-export {coinFlip, coinFlips, countFlips, flipACoin};
+// export {coinFlip, coinFlips, countFlips, flipACoin};
