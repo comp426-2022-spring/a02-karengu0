@@ -10,4 +10,4 @@ const num = argument.num || 1;
 let numOfFlips = coinFlips(num)
 
 console.log(numOfFlips);
-console.log(countFlips(flips));
+console.log(countFlips(numOfFlips));
