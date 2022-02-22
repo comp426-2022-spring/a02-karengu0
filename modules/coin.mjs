@@ -13,18 +13,13 @@
  * returns: heads
  * 
  */
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-function coinFlip() {
-  let x = getRandomIntInclusive(0,1);
-  if (x == 0) {
-    return "heads";
-  } else {
-    return "tails";
-  }
+// function getRandomIntInclusive(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+export function coinFlip() {
+  return (Math.floor(Math.random() * 2) == 0) ? 'heads': 'tails';
 }
 
 /** Multiple coin flips
@@ -46,10 +41,11 @@ function coinFlip() {
     ]
  */
 
-function coinFlips(flips) {
-  const resultsArray = [];
-  for(let i = 0; i < flips; i++) {
-    resultsArray.push(coinFlip());
+export function coinFlips(flips) {
+  let resultsArray = [];
+  for(var i = 0; i < flips; i++) {
+    let flip = coinFlip();
+    resultsArray[i] = flip;
   }
   return resultsArray;
 }
@@ -67,17 +63,22 @@ function coinFlips(flips) {
  * @returns {{ heads: number, tails: number }}
  */
 
-function countFlips(array) {
+export function countFlips(array) {
   let heads = 0;
   let tails = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i]=="heads") {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i]=='heads') {
       heads++;
-    } else {
+    } else if (array[i] == 'tails') {
       tails++;
     }
   }
-  return "heads: " + heads + ", tails: " + tails + " ";
+  if (heads == 0) {
+    return {"tails": tails};
+  } else if (tails == 0) {
+    return {"heads": heads};
+  }
+  return {"heads": heads, "tails": tails};
 }
 
 /** Flip a coin!
@@ -91,13 +92,15 @@ function countFlips(array) {
  * returns: { call: 'tails', flip: 'heads', result: 'lose' }
  */
 
-function flipACoin(call) {
-  flip = coinFlip();
-  if (call==flip) {
-    return "call: '" + call + "', " + "flip: '" + flip + "', " + "result: 'win'";
-  } else {
-    return "call: '" + call + "', " + "flip: '" + flip + "', " + "result: 'lose'";
+export function flipACoin(call) {
+  let flip = coinFlip();
+  let result = "";
+  if (flip==call) {
+    result = "win";
+  } else if (flip != call) {
+    result = "lose";
   }
+  return {"call": call, "flip": flip, "result": result};
 }
 
 
@@ -106,4 +109,4 @@ function flipACoin(call) {
  * Export all of your named functions
 */
 
-export {getRandomIntInclusive, coinFlip, coinFlips, countFlips, flipACoin};
+export {coinFlip, coinFlips, countFlips, flipACoin};
